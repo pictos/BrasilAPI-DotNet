@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = SDKBrasilAPI
+build_property.ProjectDir = C:\Git\BrasilAPI-DotNet\src\BrasilAPI\BrasilAPI\
