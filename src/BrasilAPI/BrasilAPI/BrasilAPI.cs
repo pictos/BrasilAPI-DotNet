@@ -20,6 +20,11 @@ namespace SDKBrasilAPI
             Client = CreateHttpClient();
         }
 
+        public BrasilAPI(HttpClient client)
+        {
+            Client = client;
+        }
+
         /// <summary>
         /// Busca por CNPJ na API Minha Receita.
         /// </summary>
