@@ -15,15 +15,15 @@ public record BancoResponse : BaseResponse
 [DataContract]
 public record Banco
 {
-	[DataMember(Name = "ispb")]
+	[JsonPropertyName( "ispb")]
 	public string ISPB { get; set; }
 
-	[DataMember(Name = "name")]
+	[JsonPropertyName( "name")]
 	public string Nome { get; set; }
 
-	[DataMember(Name = "code")]
+	[JsonPropertyName( "code")]
 	public int? Codigo { get; set; }
 
-	[DataMember(Name = "fullName")]
+	[JsonPropertyName( "fullName")]
 	public string NomeCompleto { get; set; }
 }

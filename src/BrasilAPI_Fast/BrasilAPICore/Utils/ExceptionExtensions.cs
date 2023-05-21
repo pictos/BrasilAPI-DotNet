@@ -2,9 +2,9 @@
 
 static class ExceptionExtensions
 {
-	public static void ThrowIfNull(object? obj)
-	{
-		if (obj is null)
-			throw new ArgumentNullException(nameof(obj));
-	}
+    public static void ThrowIfNull(object? obj)
+    {
+        if (obj is null)
+            throw new ArgumentNullException(nameof(obj));
+    }
 }

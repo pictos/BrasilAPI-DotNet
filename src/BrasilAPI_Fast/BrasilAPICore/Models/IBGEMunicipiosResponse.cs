@@ -9,8 +9,8 @@ public record IBGEMunicipiosResponse : BaseResponse
 [DataContract]
 public record Municipio
 {
-	[DataMember(Name = "nome")]
+	[JsonPropertyName( "nome")]
 	public string Nome { get; set; }
-	[DataMember(Name = "codigo_ibge")]
+	[JsonPropertyName( "codigo_ibge")]
 	public string CodigoIBGE { get; set; }
 }

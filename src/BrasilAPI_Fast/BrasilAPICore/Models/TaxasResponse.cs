@@ -15,8 +15,8 @@ public record TaxaResponse : BaseResponse
 [DataContract]
 public record Taxa
 {
-	[DataMember(Name = "nome")]
+	[JsonPropertyName( "nome")]
 	public string Nome { get; set; }
-	[DataMember(Name = "valor")]
+	[JsonPropertyName( "valor")]
 	public float Valor { get; set; }
 }

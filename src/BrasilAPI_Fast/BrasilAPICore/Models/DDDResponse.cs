@@ -5,9 +5,9 @@ namespace BrasilAPI;
 [DataContract]
 public record DDDResponse : BaseResponse
 {
-	[DataMember(Name = "state")]
+	[JsonPropertyName( "state")]
 	public Uf UF { get; set; }
 
-	[DataMember(Name = "cities")]
+	[JsonPropertyName( "cities")]
 	public IEnumerable<string> Cities { get; set; }
 }

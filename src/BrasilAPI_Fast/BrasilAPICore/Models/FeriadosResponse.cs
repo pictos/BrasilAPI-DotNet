@@ -10,12 +10,12 @@ public record FeriadosResponse : BaseResponse
 [DataContract]
 public record Feriado
 {
-	[DataMember(Name = "date")]
+	[JsonPropertyName( "date")]
 	public DateTime? Date { get; set; }
 
-	[DataMember(Name = "name")]
+	[JsonPropertyName( "name")]
 	public string Name { get; set; }
 
-	[DataMember(Name = "type")]
+	[JsonPropertyName( "type")]
 	public string Type { get; set; }
 }

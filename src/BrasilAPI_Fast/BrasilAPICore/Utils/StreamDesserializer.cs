@@ -1,32 +1,42 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace BrasilAPI.Utils;
 
 public static class StreamDesserializer
 {
-	static readonly JsonSerializer js = new();
+    static readonly JsonSerializerOptions options = new();
 
-	internal static T? DeserializeJsonFromStream<T>(Stream? stream)
-	{
-		if (stream is null || !stream.CanRead)
-			return default;
+    //public static T? DeserializeJsonFromStream<T>(Stream? stream)
+    //{
+    //	if (stream is null || !stream.CanRead)
+    //		return default;
 
-		using var sr = new StreamReader(stream);
-		using var jtr = new JsonTextReader(sr);
-		var searchResult = js.Deserialize<T>(jtr);
-		return searchResult;
-	}
+    //	using var sr = new StreamReader(stream);
+    //	using var jtr = new JsonTextReader(sr);
+    //	var searchResult = js.Deserialize<T>(jtr);
+    //	return searchResult;
+    //}
 
-	public static async Task<string> StreamToStringAsync(Stream? stream)
-	{
-		var content = string.Empty;
+    public static T? DeserializeJsonFromStream<T>(Stream? stream)
+    {
+        if (stream is null || !stream.CanRead)
+            return default;
 
-		if (stream is null)
-			return content;
+        var searchResult = System.Text.Json.JsonSerializer.Deserialize<T>(stream, options);
+        return searchResult;
+    }
 
-		using var sr = new StreamReader(stream);
-		content = await sr.ReadToEndAsync().ConfigureAwait(false);
+    public static async Task<string> StreamToStringAsync(Stream? stream)
+    {
+        var content = string.Empty;
 
-		return content;
-	}
+        if (stream is null)
+            return content;
+
+        using var sr = new StreamReader(stream);
+        content = await sr.ReadToEndAsync().ConfigureAwait(false);
+
+        return content;
+    }
 }

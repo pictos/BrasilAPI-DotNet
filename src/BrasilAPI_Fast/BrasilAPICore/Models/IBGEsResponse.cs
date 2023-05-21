@@ -15,30 +15,30 @@ public record IBGEResponse : BaseResponse
 [DataContract]
 public record Ibge
 {
-	[DataMember(Name = "id")]
+	[JsonPropertyName( "id")]
 	public int ID { get; set; }
 
 	public Uf UF { get => (Uf)ID; }
 
-	[DataMember(Name = "sigla")]
+	[JsonPropertyName( "sigla")]
 	public string Sigla { get; set; }
 
-	[DataMember(Name = "nome")]
+	[JsonPropertyName( "nome")]
 	public string Nome { get; set; }
 
-	[DataMember(Name = "regiao")]
+	[JsonPropertyName( "regiao")]
 	public Regiao Regiao { get; set; }
 }
 
 [DataContract]
 public record Regiao
 {
-	[DataMember(Name = "id")]
+	[JsonPropertyName( "id")]
 	public int ID { get; set; }
 
-	[DataMember(Name = "sigla")]
+	[JsonPropertyName( "sigla")]
 	public string Sigla { get; set; }
 
-	[DataMember(Name = "nome")]
+	[JsonPropertyName( "nome")]
 	public string Nome { get; set; }
 }
