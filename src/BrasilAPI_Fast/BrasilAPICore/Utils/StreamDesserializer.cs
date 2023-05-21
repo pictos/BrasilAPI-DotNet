@@ -2,16 +2,17 @@
 
 namespace BrasilAPI.Utils;
 
-static class StreamDesserializer
+public static class StreamDesserializer
 {
-	public static T? DeserializeJsonFromStream<T>(Stream? stream)
+	static readonly JsonSerializer js = new();
+
+	internal static T? DeserializeJsonFromStream<T>(Stream? stream)
 	{
-		if (stream is null || stream.CanRead == false)
+		if (stream is null || !stream.CanRead)
 			return default;
 
 		using var sr = new StreamReader(stream);
 		using var jtr = new JsonTextReader(sr);
-		var js = new JsonSerializer();
 		var searchResult = js.Deserialize<T>(jtr);
 		return searchResult;
 	}
@@ -20,11 +21,11 @@ static class StreamDesserializer
 	{
 		var content = string.Empty;
 
-		if (stream is not null)
-		{
-			using var sr = new StreamReader(stream);
-			content = await sr.ReadToEndAsync().ConfigureAwait(false);
-		}
+		if (stream is null)
+			return content;
+
+		using var sr = new StreamReader(stream);
+		content = await sr.ReadToEndAsync().ConfigureAwait(false);
 
 		return content;
 	}

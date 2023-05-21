@@ -2,13 +2,18 @@
 
 namespace BrasilAPI;
 
+public record IBGEsResponse : BaseResponse
+{
+	public IEnumerable<Ibge> IBGEs { get; set; }
+}
+
 public record IBGEResponse : BaseResponse
 {
-	public IEnumerable<IBGE> IBGEs { get; set; }
+	public Ibge IBGE { get; set; }
 }
 
 [DataContract]
-public record IBGE
+public record Ibge
 {
 	[DataMember(Name = "id")]
 	public int ID { get; set; }

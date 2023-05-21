@@ -2,8 +2,8 @@
 
 public abstract record BaseResponse
 {
-	internal string CalledURL { get; set; }
-	internal string JsonResponse { get; set; }
+	internal string? CalledURL { get; set; }
+	public Stream? JsonResponse { get; set; }
 }
 
 public enum Uf

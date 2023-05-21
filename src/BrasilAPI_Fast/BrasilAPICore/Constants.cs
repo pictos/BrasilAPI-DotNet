@@ -4,9 +4,11 @@ class Constants
 {
 	public const string BaseUrl= "https://brasilapi.com.br/api/";
 	
-	public const string TaxasUrl = "taxas/v1/{0}";
+	public const string TaxasSiglaUrl = "taxas/v1/{0}";
 
-	public const string FipePrecosUrl = "fipe/preco/v1/";
+	public const string TaxasUrl = "taxas/v1/";
+
+	public const string FipePrecosUrl = "fipe/preco/v1/{0}";
 
 	public const string FipeTabelasUrl = "fipe/tabelas/v1";
 
@@ -29,4 +31,6 @@ class Constants
 	public const string CepUrl = "cep/v2/{0}";
 
 	public const string CnpjUrl = "cnpj/v1/{0}";
+
+	public const string RegistroUrl = "registrobr/v1/{0}";
 }
