@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SDKBrasilAPI.Responses;
+namespace BrasilAPI.Responses;
 
 [DataContract]
 public record RegistroBrResponse : BaseResponse

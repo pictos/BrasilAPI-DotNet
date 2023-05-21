@@ -1,4 +1,4 @@
-﻿namespace SDKBrasilAPI;
+﻿namespace BrasilAPI;
 
 public abstract record BaseResponse
 {

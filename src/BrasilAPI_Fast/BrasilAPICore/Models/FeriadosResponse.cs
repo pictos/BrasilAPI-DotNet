@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SDKBrasilAPI;
+namespace BrasilAPI;
 
 public record FeriadosResponse : BaseResponse
 {

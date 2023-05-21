@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SDKBrasilAPI;
+namespace BrasilAPI;
 
 [DataContract]
 public record CEPResponse : BaseResponse
