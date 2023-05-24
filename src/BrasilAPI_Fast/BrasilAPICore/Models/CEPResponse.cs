@@ -2,18 +2,18 @@
 
 public record CEPResponse : BaseResponse
 {
-	public string CEP { get; set; }
+    public string CEP { get; set; }
 
-	[JsonConverter(typeof(JsonStringEnumConverter))]
-	public Uf State { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public Uf State { get; set; }
 
-	public string City { get; set; }
+    public string City { get; set; }
 
-	public string Neighborhood { get; set; }
+    public string Neighborhood { get; set; }
 
-	public string Street { get; set; }
+    public string Street { get; set; }
 
-	public Location Location { get; set; }
+    public Location Location { get; set; }
 }
 
 //string json = 
@@ -36,15 +36,15 @@ public record CEPResponse : BaseResponse
 
 public record Location
 {
-	public string Type { get; set; }
+    public string Type { get; set; }
 
-	public Coordinates Coordinates { get; set; }
+    public Coordinates Coordinates { get; set; }
 }
 
 
 public record Coordinates
 {
-	public string Longitude { get; set; }
+    public string Longitude { get; set; }
 
-	public string Latitude { get; set; }
+    public string Latitude { get; set; }
 }
