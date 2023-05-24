@@ -1,9 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace BrasilAPI;
-
-
-
+﻿namespace BrasilAPI;
 
 public record CEPResponse : BaseResponse
 {
