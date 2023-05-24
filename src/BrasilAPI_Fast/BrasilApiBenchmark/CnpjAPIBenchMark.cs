@@ -14,7 +14,7 @@ public class CnpjAPIBenchMark
 	CustomHttpMessageHandler handler;
 
 	[GlobalSetup]
-	public async Task Initiliaze()
+	public async Task Init()
 	{
 		using var grab = new SDKBrasilAPI.BrasilAPI();
 		var response = await grab.CNPJ("45633726000108");
