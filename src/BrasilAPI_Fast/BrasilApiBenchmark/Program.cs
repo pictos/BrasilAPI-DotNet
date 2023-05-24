@@ -13,7 +13,7 @@ Console.WriteLine("Hello, World!");
 IConfig config = new DebugBuildConfig();
 config.WithOptions(ConfigOptions.DisableOptimizationsValidator);
 
-//BenchmarkRunner.Run<CepApiBenchmark>(config);
+BenchmarkRunner.Run<CepApiBenchmark>();
 
 
 //var response = await new SDKBrasilAPI.BrasilAPI().CNPJ("45633726000108");
@@ -32,14 +32,14 @@ config.WithOptions(ConfigOptions.DisableOptimizationsValidator);
 
 //FastApi.Current.ReplaceHttpClient(client);
 
-var cep = new CepApiBenchmark();
+//var cep = new CepApiBenchmark();
 
-await cep.Initiliaze();
+//await cep.Initiliaze();
 
 
-for (int i = 0; i < 10; i++)
-{
-	var r = await cep.NewApiAsync();
-}
+//for (int i = 0; i < 10; i++)
+//{
+//	var r = await cep.NewApiAsync();
+//}
 
 

@@ -34,12 +34,25 @@ public class CepApiBenchmark
 	[Benchmark]
 	public async Task<CEPResponse> NewApiAsync()
 	{
+		//CEPResponse cep = null!;
+		//for(var i = 0;i <= 100; i++)
+		//	cep = await FastApi.Cep("30310-300");
+
+		//return cep;
+
 		return await FastApi.Cep("30310-300");
 	}
 
 	[Benchmark(Baseline = true)]
-	public Task<SDKBrasilAPI.CNPJResponse> OldApiAsync()
+	public async Task<SDKBrasilAPI.CEPResponse> OldApiAsync()
 	{
-		return oldApi.CNPJ("30310-300");
+		//SDKBrasilAPI.CEPResponse cep = null!;
+		//for(var i = 0;i <= 100; i++)
+		//	cep = await oldApi.CEP_V2("30310-300");
+
+		//return cep;
+
+		
+		return  await oldApi.CEP_V2("30310-300");
 	}
 }
