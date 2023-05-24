@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Net;
+using System.Runtime.InteropServices;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Running;
 using BrasilAPI;
@@ -12,7 +13,7 @@ Console.WriteLine("Hello, World!");
 IConfig config = new DebugBuildConfig();
 config.WithOptions(ConfigOptions.DisableOptimizationsValidator);
 
-BenchmarkRunner.Run<APIBenchMark>(config);
+//BenchmarkRunner.Run<CepApiBenchmark>(config);
 
 
 //var response = await new SDKBrasilAPI.BrasilAPI().CNPJ("45633726000108");
@@ -31,10 +32,14 @@ BenchmarkRunner.Run<APIBenchMark>(config);
 
 //FastApi.Current.ReplaceHttpClient(client);
 
+var cep = new CepApiBenchmark();
 
-//for (int i = 0; i < 10; i++)
-//{
-//	var r = await FastApi.Current.Cnpj("1234");
-//}
+await cep.Initiliaze();
+
+
+for (int i = 0; i < 10; i++)
+{
+	var r = await cep.NewApiAsync();
+}
 
 

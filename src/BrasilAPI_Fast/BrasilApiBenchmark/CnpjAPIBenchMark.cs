@@ -1,12 +1,10 @@
-﻿using BenchmarkDotNet.Attributes;
-using BrasilAPI;
-using System.Net;
+﻿using BrasilAPI;
 
 namespace BrasilApiBenchmark;
 
 
 [MemoryDiagnoser]
-public class APIBenchMark
+public class CnpjAPIBenchMark
 {
 
 	BrasilAPI.BrasilAPI FastApi => BrasilAPI.BrasilAPI.Current;
@@ -20,9 +18,9 @@ public class APIBenchMark
 	{
 		using var grab = new SDKBrasilAPI.BrasilAPI();
 		var response = await grab.CNPJ("45633726000108");
-
-		var json = System.Text.Json.JsonSerializer.Serialize(response);
 		
+		var json = System.Text.Json.JsonSerializer.Serialize(response);
+
 		handler = new()
 		{
 			Content = json
@@ -38,14 +36,14 @@ public class APIBenchMark
 
 
 	[Benchmark]
-	public async Task<CNPJResponse> NewApiAsync()
+	public Task<CNPJResponse> NewApiAsync()
 	{
-		return await FastApi.Cnpj("1234");
+		return FastApi.Cnpj("1234");
 	}
 
 	[Benchmark(Baseline = true)]
-	public async Task<SDKBrasilAPI.CNPJResponse> OldApiAsync()
+	public Task<SDKBrasilAPI.CNPJResponse> OldApiAsync()
 	{
-		return await oldApi.CNPJ("123");
+		return oldApi.CNPJ("123");
 	}
 }

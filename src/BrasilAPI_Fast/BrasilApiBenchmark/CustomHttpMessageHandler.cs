@@ -2,9 +2,9 @@
 
 namespace BrasilApiBenchmark;
 
-internal class CustomHttpMessageHandler : HttpMessageHandler
+public class CustomHttpMessageHandler : HttpMessageHandler
 {
-	internal required string Content { get; init; }
+	public required string Content { get; init; }
 	
 	protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 	{
