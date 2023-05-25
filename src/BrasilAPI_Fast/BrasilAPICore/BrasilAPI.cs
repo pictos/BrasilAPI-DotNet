@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Text;
 using static BrasilAPI.Constants;
 using static BrasilAPI.Utils.ExceptionExtensions;
 using static BrasilAPI.Utils.StreamDesserializer;
@@ -70,7 +69,7 @@ public class BrasilAPI
     /// Atualmente, o Cep é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do Cep possui um significado.
     /// </param>
     /// <returns></returns>
-    public Task<CEPResponse> Cep(string cep)
+    public Task<CEPResponse> Cep(ReadOnlySpan<char> cep)
     {
         //Na doc. ta colocando cep como int64, porem todos os sistemas (que eu tenha visto) trabalham com cep como string...
         //Como estou adicionando esse processo pra remover alguma mascara creio "resolver" o problema
@@ -114,7 +113,7 @@ public class BrasilAPI
         {
             Feriados = feriados ?? Enumerable.Empty<Feriado>(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return feriadoResponse;
@@ -132,7 +131,7 @@ public class BrasilAPI
         {
             IBGEs = ibges ?? Enumerable.Empty<Ibge>(),
             CalledURL = IbgeEstadosUrl,
-            JsonResponse = stream
+            
         };
 
         return ibgeResponse;
@@ -160,7 +159,7 @@ public class BrasilAPI
         {
             IBGE = result ?? new(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return ibgeResponse;
@@ -181,7 +180,7 @@ public class BrasilAPI
         {
             Municipios = municipios ?? Enumerable.Empty<Municipio>(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return ibgeResponse;
@@ -210,7 +209,7 @@ public class BrasilAPI
         {
             Marcas = marcas ?? Enumerable.Empty<MarcaVeiculo>(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return fipeResponse;
@@ -228,7 +227,7 @@ public class BrasilAPI
         {
             Tabelas = tabelas ?? Enumerable.Empty<TabelaFIPE>(),
             CalledURL = FipeTabelasUrl,
-            JsonResponse = stream
+            
         };
 
         return fipeResponse;
@@ -255,7 +254,7 @@ public class BrasilAPI
         {
             Precos = precos ?? Enumerable.Empty<PrecoFIPE>(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return fipeResponse;
@@ -281,7 +280,7 @@ public class BrasilAPI
         {
             Taxas = taxas ?? Enumerable.Empty<Taxa>(),
             CalledURL = TaxasUrl,
-            JsonResponse = stream
+            
         };
 
         return taxasResponse;
@@ -297,7 +296,7 @@ public class BrasilAPI
         {
             Taxa = taxa ?? new(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return taxasResponse;
@@ -318,7 +317,7 @@ public class BrasilAPI
         {
             Banco = bank ?? new(),
             CalledURL = url,
-            JsonResponse = stream
+            
         };
 
         return bankResponse;
@@ -336,7 +335,7 @@ public class BrasilAPI
         {
             Bancos = bancos ?? Enumerable.Empty<Banco>(),
             CalledURL = BancosUrl,
-            JsonResponse = stream
+            
         };
 
         return bancoResponse;
@@ -359,7 +358,6 @@ public class BrasilAPI
         var result = DeserializeJsonFromStream<T>(stream) ?? new();
 
         result.CalledURL = url;
-        result.JsonResponse = stream;
 
         return result;
     }
@@ -369,6 +367,10 @@ public class BrasilAPI
         using var response = await client.GetAsync(url).ConfigureAwait(false);
 
         await EnsureSuccess(response, BaseUrl);
+        
+#if DEBUG
+        var json = await response.Content.ReadAsStringAsync();
+#endif
 
         var stream = await response.Content.ReadAsStreamAsync();
 
@@ -403,20 +405,7 @@ public class BrasilAPI
         }
     }
 
-    static string OnlyNumbers(string input)
-    {
-        var sb = new StringBuilder();
 
-        foreach (var c in input)
-        {
-            if (!char.IsDigit(c))
-                continue;
-
-            sb.Append(c);
-        }
-
-        return sb.ToString();
-    }
     static ReadOnlySpan<char> OnlyNumbers(ReadOnlySpan<char> input)
     {
         var size = input.Length;
