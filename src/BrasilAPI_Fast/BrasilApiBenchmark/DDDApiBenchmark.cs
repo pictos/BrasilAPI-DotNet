@@ -5,7 +5,6 @@ namespace BrasilApiBenchmark;
 [MemoryDiagnoser]
 public class DDDApiBenchmark
 {
-	
 	BrasilAPI.BrasilAPI FastApi => BrasilAPI.BrasilAPI.Current;
 
 	SDKBrasilAPI.BrasilAPI oldApi;
