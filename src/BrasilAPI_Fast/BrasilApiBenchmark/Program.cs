@@ -43,3 +43,12 @@ BenchmarkRunner.Run<CepApiBenchmark>();
 //}
 
 
+static class InitHelper
+{
+	internal static readonly JsonSerializerOptions options = new()
+	{
+		PropertyNameCaseInsensitive = true,
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull | JsonIgnoreCondition.WhenWritingDefault
+	};
+}
